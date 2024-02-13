@@ -1,0 +1,492 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2758
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Tahoma;\f1\fswiss\fcharset0 Helvetica;\f2\fswiss\fcharset0 Helvetica-BoldOblique;
+\f3\fswiss\fcharset0 Helvetica-Oblique;}
+{\colortbl;\red255\green255\blue255;\red164\green8\blue3;\red0\green0\blue0;\red255\green255\blue255;
+\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c71055\c10387\c0;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;
+\csgray\c0\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15060\viewh18760\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 PseudoCode for Java Assignment\
+\
+## Project Run\
+\'97 Main Menu \'97\
+int mainMenuChoice\
+boolean menu = true\
+while(menu) \{\
+switch (mainMenuChoice) \{\
+case 1:\
+	New Game\
+break;\
+case 2: \
+	Change Game Settings\
+break;\
+case 3:\
+	Read / Update CSV Files\
+break;\
+case 4:\
+	//Exit\
+	menu = false\
+break;\
+\}\
+\'97 New Game \'97\
+//Create object that stores \
+listItem = rowID, question, answer\
+question = rowID, question\
+answer = rowID, answer\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 int qValue = 0;
+\f0 \
+string path = \'93computerPath\'94\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf2 linkedList / array playerInfo\
+method createNewPlayer \{\
+ print \'93Enter your name\'94\
+ input name\
+ array[0] = name;\
+\
+ maxLivesLimit \
+ //Will be specified before hand\
+ array[1] = maxLivesLimit\
+\
+ noOfLives\
+ array[2] = 0\
+\
+ maxQuestionLimit\
+ //Will be specified before hand\
+ array[3] = maxQuestionLimit\
+\
+ questionsCorrect\
+ array[4] = 0\
+\
+\}\cf0 \
+ \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f1 \cf0 boolean isGameRunning = true;\
+method gameRun \{\
+populateLists()\
+ while (isGameRunning) \{\
+  string csvFileName = categoryChoice()\
+   qValue = returnQuestion(csvFileName)\
+   checkAnswer()\
+\}\
+   
+\f0 \
+ #Dice Roll\
+int diceRoll;\
+\
+Random rndm = new Random;
+\f1\fs36 \
+\
+
+\fs28 method rollDice returning int () \{\
+ diceRoll = rnd(1, 6);\
+\}\
+\
+method diceRollCategoryReturn returning String() \{\
+  diceRoll = rollDice();\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0   categoryChoice = null;\
+  menuChoice(diceRoll)\
+\}\
+\
+method printCategoryMenu() \{\
+  printf(\'93Choose your file category:\\n1. Geography\\n2. History\\n3. Movie\\n4. Science\\n5. Sport\\n6. Music\'94);\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 string categoryChoice;\
+int menuChoiceNumber\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 method menuChoice returning String (menuChoiceNumber) \{\
+ switch (menuChoiceNumber) \{\
+ case 1: \
+  categoryChoice = geography;\
+ break;\
+ case 2:\
+  categoryChoice = history;\
+ break\
+ case 3:\
+  categoryChoice = movie;\
+ break;\
+ case 4:\
+  categoryChoice = science;\
+ break;\
+ case 5:\
+  categoryChoice = sport;\
+ break;\
+ case 6:\
+  categoryChoice = music;\
+ break;\
+ default:\
+  System.err.println(\'93There\'92s no category for that number\'94);\
+ break;\
+print \'93Your category is\'94 categoryChoice;\
+ \}\
+\
+\}	\
+\
+method chooseFromMenu() \{\
+ Scanner scn = new Scanner\
+ printCategoryMenu();	\
+ menuChoiceNumber = scn.NextInt() \
+ menuChoice(menuChoiceNumber|)\
+\}\
+\
+string linkedListName returns int;\
+method returnQuestion returns string() \{\
+ linkedListName = null\
+ switch (categoryChoice) \{\
+ //These should be added into own methods so it is kept modular\
+  case \'93geography\'94:\
+   linkedListName = categoryChoice\
+   //get equivalent linked lists\
+   int listLength = geography.length\
+   qValue = rnd(1, listLength)\
+   print geography(qValue)\
+   geography.pop(qValue)\
+  break; \
+   case \'93history\'94:\
+   //get equivalent linked lists\
+   int listLength = history.length\
+   qValue = rnd(1, listLength)\
+   print history(qValue)\
+   history.pop(qValue)\
+  break; \
+//and so on\
+\
+\}\
+\
+method checkAnswer() \{\
+ expectedAnswer = linkedListName[]\
+\
+ inputted Answer = input \'93the answer to your question\'94\
+ \
+ if (expectedAnswer === inputtedAnswer) \{\
+	increaseCorrectQuestionPoint\
+ else if (expectedAnswer != inputtedAnswer) \{\
+	decreaseLives\
+ \}\
+\}\
+\
+method increaseCorrectQuestionPoint \{\
+ playerInfo.questionsCorrect +=\
+\
+ if (playerInfo.questionsCorrect == maxQuestionLimit) \{\
+  print \'93congratulations you have won the game\'94\
+  isGameRunning = false;\
+ \} else if (playerInfo.questionsCorrect >= maxQuestionLimit) \{\
+  print \'93You got the question right! You have to get (maxQuestionLimit - playerinfo.questionsCorrect) more correct to win the game\'94\
+  gameRun / continueRolling\
+\}\
+\
+method decreaseLives \{\
+ playerInfo.noOfLives +=\
+\
+ if (noOfLives == maxLivesLimit) \{\
+  print \'93You have lost the game\'94\
+  isGameRunning = false\
+ \} else if(noOfLives < maxLivesLimit) \{\
+ print \'93You have (maxLivesLimit - noOfLives) lives left\'94\
+ \}\
+\}\
+\
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \expnd0\expndtw0\kerning0
+method getAnswer() \{\
+  boolean found = false\
+\
+  for (int i = 0; i < linkedList.size(); i++) \{\
+    Question currentQuestion = linkedList.get(i)\
+\
+    if (currentQuestion.getRowID() == qValue) \{\
+      found = true\
+      \
+      String expectedAnswer = currentQuestion.getAnswer()\
+      String inputtedAnswer = input("Enter the answer to your question")\
+ \
+      if (expectedAnswer.equalsIgnoreCase(inputtedAnswer)) \{\
+        increaseCorrectQuestionPoint()\
+      \} else \{\
+        decreaseLives()\
+      \}\
+      break\
+    \}\
+  \}\
+\
+  if (!found) \{\
+    print("Error: Question not found!")\
+  \}\
+\}\cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \'97 Read \'97\
+\
+string fileNames[] = [geography, \'85]\
+method populateLists\
+//need to skip first line\
+for (int i = 0; i < arrayFileNames.length, i++) \{\
+ string csvFilePath = path + arrayFileNames[i] + \'93.csv\'94\
+ LinkedList<String> arrayFileName[i] = new LinkedList<>();\
+ try \{ BufferedReader reader = new Reader (\
+   new fileReader (CSVFilePath) \
+   string line\
+   while ((line = reader.readerline()) != null ) \
+   string[] parts = line.split(\'93,\'94)\
+   if parts.length == 3\
+   int rowID = integerParseInt(parts[0]);\
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb4 \expnd0\expndtw0\kerning0
+   String questionText = parts[1];\
+   String answer = parts[2];\
+   fileName[i].toString().add(new listItem(rowID, questionText, answer));\cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0  \
+method readAllQuestionsFromCSV() \{\
+ LinkedList<String> questions = new LinkedList<>();\
+ categoryChoice = chooseFromMenu()\
+ string CSVFilePath = categoryChoice + \'93.csv\'94\
+ try \{Buffered Reader = new Reader (\
+  new fileReader (CSVFilePath)\
+  string line\
+  while ((line = reader.readLine()) != null) \{\
+   String[] parts = line.split(\'93,\'94);\
+   if(parts.length == 3) \{	\
+   int rowID = integerParseInt(parts[0]);\
+   String questionText = parts[1]\
+   questions.add(newQuestion(rowID, questionText);\
+ catch (IOException e) 	\
+  e.printStackTrace();\
+ return questions;\
+ \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 method readAllAnswersFromCSV() \{\
+ LinkedList<String> answers = new LinkedList<>();\
+ categoryChoice = chooseFromMenu()\
+ string CSVFilePath = categoryChoice + \'93.csv\'94\
+ try \{Buffered Reader = new Reader (\
+  new fileReader (CSVFilePath)\
+  string line\
+  while ((line = reader.readLine()) != null) \{\
+   String[] parts = line.split(\'93,\'94);\
+   if(parts.length == 3) \{	\
+    int rowID = integerParseInt(parts[0]);\
+   String answer = parts[2]\
+   answers.add(newAnswer(rowID, answer)\
+ catch (IOException e) 	\
+  e.printStackTrace();\
+ return answers;\
+ \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 method multipleCategoriesSelector() \{\
+ System.out.println(\'93How manu files would you like to read from?\'94);\
+ return scn.NextInt();\
+\}\
+\
+method LinkedList<String> readQuestionsFromMultipleCSVs() \{\
+ LinkedList<result> = new LinkedList<>()\
+ int categoriesNumChoice = multipleCategoriesSelector();\
+ for(int i = 0;i categoriesNumChoice; i++) \{\
+  LinkedList<String> questions = readAllQuestionsFromCSV();\
+  result.add(\'93Category \'93 + (i + 1) + \'93 Questions:\\n\'94 + String.joiN(\'93\\n\'94, questions));\
+ \}\
+return result\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 method LinkedList<String> readQuestionsFromMultipleCSVs() \{\
+ LinkedList<result> = new LinkedList<>()\
+ int categoriesNumChoice = multipleCategoriesSelector();\
+ for(int i = 0;i categoriesNumChoice; i++) \{\
+  LinkedList<String> questions = readAllAnswersFromCSV();\
+  result.add(\'93Category \'93 + (i + 1) + \'93 Answers:\\n\'94 + String.join(\'93\\n\'94, answers));\
+ \}\
+return result\
+\
+\'97Write.java \'97\
+\pard\pardeftab720\partightenfactor0
+\cf3 \cb5 public void questionAmountChoice() \{\
+		System.
+\f2\i\b out
+\f1\i0\b0 .println("Choose an action:");\
+		System.
+\f2\i\b out
+\f1\i0\b0 .println("1. Add a single question and answer");\
+		System.
+\f2\i\b out
+\f1\i0\b0 .println("2. Add multiple questions and answers");\
+\
+		int userChoice = scn.nextInt();\
+		scn.nextLine(); // Consume the newline character\
+\
+		if (userChoice == 1) \{\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Enter the question: ");\
+			String question = scn.nextLine();\
+\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Enter the answer: ");\
+			String answer = scn.nextLine();\
+\
+			addQandASingleToCSV(question, answer);\
+		\} else if (userChoice == 2) \{\
+			addQandAMultipleToCSV();\
+		\} else \{\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Invalid choice. Please enter 1 or 2.");\
+		\}\
+	\}\
+\
+	public void questionMethodChoice(int userChoice) \{\
+		if (userChoice == 1) \{\
+			addQandASingleToCSV(null, null);\
+		\} else if (userChoice <= 0) \{\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Number of questions must be greater than 0");\
+		\} else if (userChoice > 1) \{\
+			addQandAMultipleToCSV();\
+		\}\
+	\}\
+\
+	public void addQandASingleToCSV(String question, String answer) \{\
+		String csvPath = gameSetupInstance.getPath();\
+		int csvMenuChoice = \ul gameSetupInstance.
+\f3\i getCSVMenuChoice
+\f1\i0 ()\ulnone ;\
+		\ul gameSetupInstance.
+\f3\i setCSVFileName
+\f1\i0 (csvMenuChoice)\ulnone ;\
+		csvPath += gameSetupInstance.
+\f3\i \ul CSVFileName
+\f1\i0 \ulnone ;\
+\
+		try (FileWriter writer = new FileWriter(csvPath, true)) \{\
+			int nextRowID = getNextRowID(csvPath);\
+			String row = nextRowID + "," + question + "," + answer;\
+			writer.write(row);\
+			writer.write(System.
+\f3\i lineSeparator
+\f1\i0 ()); // Add a newline after each row\
+\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Question added successfully!");\
+		\} catch (IOException e) \{\
+			System.
+\f2\i\b err
+\f1\i0\b0 .println("Error adding question: " + e.getMessage());\
+			e.printStackTrace();\
+		\}\
+	\}\
+\
+	public void addQandAMultipleToCSV() \{\
+		LinkedList<String> questions = new LinkedList<>();\
+		LinkedList<String> answers = new LinkedList<>();\
+\
+		System.
+\f2\i\b out
+\f1\i0\b0 .println("Enter the number of questions: ");\
+		int numQuestions = scn.nextInt();\
+		scn.nextLine(); // Consume the newline character\
+\
+		for (int i = 0; i < numQuestions; i++) \{\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Enter question " + (i + 1) + ": ");\
+			String question = scn.nextLine();\
+			questions.add(question);\
+\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Enter answer " + (i + 1) + ": ");\
+			String answer = scn.nextLine();\
+			answers.add(answer);\
+		\}\
+\
+		String csvPath = gameSetupInstance.getPath();\
+		int csvMenuChoice = \ul gameSetupInstance.
+\f3\i getCSVMenuChoice
+\f1\i0 ()\ulnone ;\
+		\ul gameSetupInstance.
+\f3\i setCSVFileName
+\f1\i0 (csvMenuChoice)\ulnone ;\
+		csvPath += gameSetupInstance.
+\f3\i \ul CSVFileName
+\f1\i0 \ulnone ;\
+\
+		try (FileWriter writer = new FileWriter(csvPath, true)) \{\
+			int nextRowID = getNextRowID(csvPath);\
+\
+			for (int i = 0; i < questions.size(); i++) \{\
+				String question = questions.get(i);\
+				String answer = answers.get(i);\
+				String row = nextRowID + "," + question + "," + answer;\
+				writer.write(row);\
+				writer.write(System.
+\f3\i lineSeparator
+\f1\i0 ()); // Add a newline after each row\
+				nextRowID++;\
+			\}\
+\
+			System.
+\f2\i\b out
+\f1\i0\b0 .println("Questions added successfully!");\
+		\} catch (IOException e) \{\
+			System.
+\f2\i\b err
+\f1\i0\b0 .println("Error adding questions: " + e.getMessage());\
+			e.printStackTrace();\
+		\}\
+	\}\
+\
+	private int getNextRowID(String csvPath) \{\
+		int nextRowID = 1;\
+\
+		try (BufferedReader reader = new BufferedReader(new FileReader(csvPath))) \{\
+			String line;\
+			reader.readLine();\
+			while ((line = reader.readLine()) != null) \{\
+				String[] parts = line.split(",");\
+				if (parts.length > 0) \{\
+					try \{\
+						nextRowID = Integer.
+\f3\i parseInt
+\f1\i0 (parts[0]) + 1;\
+					\} catch (NumberFormatException e) \{\
+						System.
+\f2\i\b err
+\f1\i0\b0 .println("Invalid format for row ID. Skipping line.");\
+					\}\
+				\}\
+			\}\
+		\} catch (IOException e) \{\
+			e.printStackTrace();\
+		\}\
+\
+		return nextRowID;\
+	\}\
+\
+\'97Delete.java \'97\
+\
+int deleteRowID;\
+void DeleteRowFromCSV(int rowID, string csvPath) \{\
+ categoryChoice = chooseFromMenu()\
+\cf0 \cb1  print(linkedList categoryChoice.string)\
+ print(\'93Which row would you like to delete?\'94);\
+ deleteRowID = scn.nextInt();\
+\
+\
+for(int i = 0; i < categoryChoice.string.length; i++) \{\
+ if (categoryChoice(i) == deleteRowID) \{\
+	categoryChoice(i).delete\
+\}\
+\
+\}\
+ \
+}
